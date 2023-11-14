@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrêpesGame", "CrêpesGame\CrêpesGame.csproj", "{3CA4012C-69D0-4588-9F8E-0FA1F012909E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CA4012C-69D0-4588-9F8E-0FA1F012909E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA4012C-69D0-4588-9F8E-0FA1F012909E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA4012C-69D0-4588-9F8E-0FA1F012909E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA4012C-69D0-4588-9F8E-0FA1F012909E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A97C76CB-EC7C-44A4-AFEB-910A20420B43}
+	EndGlobalSection
+EndGlobal
