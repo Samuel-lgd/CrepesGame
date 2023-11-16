@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Security;
@@ -21,7 +22,7 @@ namespace CrêpesGame.Classes
 
         private int nbIngredient { get; set; }
 
-        public void StartGame(List<Ingredient> ingredients)
+        public Boolean StartGame(List<Ingredient> ingredients)
         {
             Ingredients = ingredients;
 
@@ -45,6 +46,17 @@ namespace CrêpesGame.Classes
 
             TypeIngredients();
             EstimatePrice();
+            Console.WriteLine("Voulez-vous rejouer ? Y/N");
+            string repRejouer = Console.ReadLine();
+            if(repRejouer == "Y")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public void ClientArrive()
@@ -53,7 +65,7 @@ namespace CrêpesGame.Classes
             Console.WriteLine("Un client arrive dans votre crêperie, il s'appelle " + ClientName + " et il a l'air pressé !");
             Crepe crepe = new Crepe();
             crepe.Garnitures = CrepeGenerator();
-            crepe.DisplayIngredients();
+            //crepe.DisplayIngredients();
             Crepe = crepe;
         }
 
@@ -85,18 +97,30 @@ namespace CrêpesGame.Classes
             chrono.Start();
             //Sert pour le calcul du score
             nbIngredient = Crepe.Garnitures.Count;
+
+            int nberror = 0;
             while (IngredientsRestants.Count != 0)
             {
                 Crepe.DisplayIngredients();
                 Console.WriteLine("Il reste " + IngredientsRestants.Count + " ingrédients à taper");
                 string ingredient = Console.ReadLine();
+
+                //Permet de passé la phase de jeu
+                if(ingredient =="BYPASSCHEAT")
+                {
+                    break;
+                }
+
+                
                 if (VerifOrthographeIngredient(ingredient, IngredientsRestants))
                 {
                     IngredientsRestants.Remove(IngredientsRestants.Find(x => x.Name == ingredient));
                 }
                 else
                 {
-                    Console.WriteLine("Je pense qu'il y a une erreur !! haha^^");
+                    //Console.WriteLine("Je pense qu'il y a une erreur !! haha^^");
+                    MessageMoqueur(nberror);
+                    nberror++;
                 }
             }   
             chrono.Stop();
@@ -151,6 +175,19 @@ namespace CrêpesGame.Classes
                 }
             }
             return false;
+        }
+
+        public void MessageMoqueur(int nberr)
+        {
+            string[] tabMsg = { "Je pense qu'il y a une erreur !! " , "Ah encore trompé", "Encore trompé :/", "Ca fait 4 fois là quand même", "5 fois là ", "Eeeeet non toujours pas", "t'es pas très bon dis donc", "Bon bon bon...","..."};
+            if(nberr > 7){
+                Console.WriteLine(tabMsg[tabMsg.Length - 1]);
+            }
+            else
+            {
+                Console.WriteLine(tabMsg[nberr]);
+            }
+            return;
         }
 
     }

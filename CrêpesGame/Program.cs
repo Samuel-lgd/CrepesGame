@@ -19,26 +19,41 @@ static void afficherTitre()
 
 static void afficherMenu()
 {
-    Console.WriteLine("1 | Jouer");
-    Console.WriteLine("2 | Quitter");
-    string Input = Console.ReadLine();
-
-    switch (Input)
+    Boolean Menu = true;
+    while( Menu)
     {
-        case "1":
-            Game game = new Game();
-            game.StartGame(genererIngredients());
-            break;
+        Console.WriteLine("1 | Jouer");
+        Console.WriteLine("2 | Quitter");
+        string Input = Console.ReadLine();
+        Boolean rejouer = true;
+        while (rejouer)
+        {
+            switch (Input)
+            {
+                case "1":
+                    Game game = new Game();
+                    rejouer = game.StartGame(genererIngredients());
+                    if(rejouer == false)
+                    {
+                        Menu = false;
+                    }
+                    break;
 
-        case "2":
-            Console.WriteLine("Au revoir !");
-            break;
+                case "2":
+                    Console.WriteLine("Au revoir !");
+                    rejouer = false;
+                    Menu = false;
+                    break;
 
-        default:
-            // Code to execute if none of the cases match
-            Console.WriteLine("ERREUR DE BASE VIRALE");
-            break;
+                default:
+                    // Code to execute if none of the cases match
+                    Console.WriteLine("ERREUR DE BASE VIRALE");
+                    break;
+            }
+        }
     }
+    
+    
 }
 
 static List<Ingredient> genererIngredients()
